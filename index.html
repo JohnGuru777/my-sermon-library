@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f6f2">
+<title>My Sermon Library</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><div class="brandmark">✝</div><div><strong>My Sermon Library</strong><small>Your personal study collection</small></div></div>
+  <button id="themeBtn" class="iconbtn" aria-label="Toggle theme">☾</button>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <div><p class="eyebrow">PERSONAL SERMON ARCHIVE</p><h1>Keep every message<br><em>within reach.</em></h1><p class="muted">Organise your sermons, Bible studies and research in one place.</p></div>
+    <button class="primary" id="newBtn">＋ New sermon</button>
+  </section>
+  <section class="stats">
+    <div class="stat"><span id="totalCount">0</span><small>Total sermons</small></div>
+    <div class="stat"><span id="categoryCount">0</span><small>Categories</small></div>
+    <div class="stat"><span id="favoriteCount">0</span><small>Favourites</small></div>
+  </section>
+  <section class="toolbar">
+    <label class="search">⌕ <input id="searchInput" placeholder="Search title, Bible verse, topic..."></label>
+    <select id="categoryFilter"><option value="">All categories</option></select>
+    <button class="secondary" id="categoryBtn">＋ Category</button>
+  </section>
+  <section class="sectionhead"><div><p class="eyebrow">YOUR COLLECTION</p><h2 id="listTitle">All sermons</h2></div><button class="textbtn" id="favoritesBtn">☆ Favourites</button></section>
+  <section id="sermonList" class="grid"></section>
+  <section id="emptyState" class="empty"><div class="emptyicon">▤</div><h3>Your library starts here</h3><p>Add your first sermon and begin building your personal collection.</p><button class="primary" id="emptyNewBtn">＋ Add your first sermon</button></section>
+  <footer><span>My Sermon Library</span><div><button class="textbtn" id="exportBtn">Export backup</button><button class="textbtn" id="importBtn">Restore backup</button><input id="importFile" type="file" accept="application/json" hidden></div></footer>
+</main>
+
+<dialog id="sermonDialog">
+<form id="sermonForm" method="dialog">
+  <div class="dialoghead"><div><p class="eyebrow">SERMON DETAILS</p><h2 id="formHeading">New sermon</h2></div><button type="button" class="iconbtn" data-close="sermonDialog">×</button></div>
+  <input type="hidden" id="sermonId">
+  <label>Title *<input id="title" required maxlength="140" placeholder="e.g. The Hour of His Judgment"></label>
+  <div class="row"><label>Category<select id="categorySelect"></select></label><label>Subcategory<input id="subcategory" placeholder="e.g. Daniel 8"></label></div>
+  <label>Key Bible references<input id="references" placeholder="Revelation 14:6–7; Daniel 8:14"></label>
+  <label>Tags<input id="tags" placeholder="prophecy, sanctuary, judgment"></label>
+  <label>Sermon notes<textarea id="notes" rows="8" placeholder="Introduction&#10;&#10;Main points&#10;&#10;Conclusion"></textarea></label>
+  <label>EGW quotations / research<textarea id="quotes" rows="4" placeholder="Add quotations and source references..."></textarea></label>
+  <label>Attach files (PDF, Word, images)<input id="attachments" type="file" multiple accept=".pdf,.doc,.docx,.txt,image/*"></label>
+  <div id="existingFiles" class="filelist"></div>
+  <label class="check"><input type="checkbox" id="isFavorite"> Mark as favourite</label>
+  <div class="actions"><button type="button" class="secondary" data-close="sermonDialog">Cancel</button><button class="primary" type="submit">Save sermon</button></div>
+</form>
+</dialog>
+
+<dialog id="categoryDialog">
+<form id="categoryForm" method="dialog">
+  <div class="dialoghead"><div><p class="eyebrow">ORGANISE YOUR LIBRARY</p><h2>Add category</h2></div><button type="button" class="iconbtn" data-close="categoryDialog">×</button></div>
+  <label>Category name *<input id="newCategory" required placeholder="e.g. Bible Prophecy"></label>
+  <div class="actions"><button type="button" class="secondary" data-close="categoryDialog">Cancel</button><button class="primary" type="submit">Add category</button></div>
+</form>
+</dialog>
+<div id="toast" role="status"></div>
+<script src="app.js"></script>
+</body></html>
